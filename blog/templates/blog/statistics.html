@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<meta charset="utf-8">
+
+{% block content %}
+    <br/>
+    <h3 style="color:#4acaa8 !important; float:left;"><a href = {% url 'line' %}> > >  Line Chart < < </a></h3>
+    <h3 style="color:#4acaa8 !important; float:left; margin-left:45px;"><a href = {% url 'bar' %}> > >  Bar Chart < < </a></h3>
+    <h3 style="color:#4acaa8 !important; float:left; margin-left:45px;"><a href = {% url 'pie' %}> > >  Pie Chart < < </a></h3>
+    <br/><br/>
+{% endblock %}

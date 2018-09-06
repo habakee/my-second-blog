@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="ko">
+	<head>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+        <!-- Scripts -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static "js/jquery.scrollex.min.js" %}"></script>
+			<script src="{% static "js/browser.min.js" %}"></script>
+			<script src="{% static "js/breakpoints.min.js" %}"></script>
+			<script src="{% static "js/util.js" %}"></script>
+			<script src="{% static "js/main.js" %}"></script>
+
+		<title>Team21 : Smart Visitor Pass</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+
+              <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+              <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+              <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+              <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+
+         <style>
+             form {
+                  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                  left: 10px;
+                  top: 10px;
+                }
+
+                label {
+                  display: block;
+                }
+         </style>
+	</head>
+
+
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="{% static "images/avatar.jpg" %}" alt="" /></span>
+					<h1 id="logo"><a href="#">Team21</a></h1>
+					<p>Ewha Womans Univ.<br />
+					CSE Final Project</p>
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Statistics</a></li>
+{#						<li><a href="#two">Things I Can Do</a></li>#}
+						<li><a href="#three">AboutUs</a></li>
+						<li><a href="#four">Contact</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+{#						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>#}
+{#						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>#}
+{#						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>#}
+						<li><a href="https://bitbucket.org/KwonNH/smart-visitor-pass" class="icon fa-github"><span class="label">Github</span></a></li>
+{#						<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>#}
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="{% static "images/banner.jpg" %}" alt="" />
+								</div>
+								<div class="container">
+									<header class="major">
+                                        <h3>Statistics</h3>
+                                        {% block content %}
+                                        {% endblock %}
+
+								</div>
+							</section>
+
+{#						<!-- Two -->#}
+{#							<section id="two">#}
+{#								<div class="container">#}
+{#									<h3>Things I Can Do</h3>#}
+{#									<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>#}
+{#									<ul class="feature-icons">#}
+{#										<li class="fa-code">Write all the code</li>#}
+{#										<li class="fa-cubes">Stack small boxes</li>#}
+{#										<li class="fa-book">Read books and stuff</li>#}
+{#										<li class="fa-coffee">Drink much coffee</li>#}
+{#										<li class="fa-bolt">Lightning bolt</li>#}
+{#										<li class="fa-users">Shadow clone technique</li>#}
+{#									</ul>#}
+{#								</div>#}
+{#							</section>#}
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h2>AboutUs</h2>
+										<p>SMART VISITOR PASS</p>
+                                    </header>
+					                <p>
+                    놀이공원, 백화점, 쇼핑몰 등의 문화복합공간에는 한꺼번에 많은 사람이 방문하기 때문에 <br />
+
+                    어느 시간대에 어떤 사용자 그룹이 많이 방문하는지 통계를 내기 어렵습니다. <br />
+
+                    하지만 문화복합공간에서는 사용자에 대한 정보를 수집하는 것이 마케팅 계획을 수립하는 데 필수적입니다.<br />
+
+                    이 시스템에서는 웹캠으로 방문자 얼굴 이미지를 수집하여 별도의 인증 장치 없이도<br />
+
+                    딥러닝 모델을 통해 나이와 성별을 추정하여 데이터베이스에 저장할 수 있습니다.<br />
+
+                    따라서 방문자의 정보를 간단히 수집하여 이에 대한 통계 자료를 시각화하여 웹서비스를 통해 제공합니다.<br />
+                                    </p>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+
+                  <h4>Ewha Womans Univ. <br />Computer Science Department Final Project</h4>
+
+                  <br />
+
+									<h3>Profile</h3>
+									<p>1401176 박상하<br />1515004 권나현<br />1515066 최하영</p>
+
+                  <h3>Location</h3>
+									<p>52, Ewhayeodae-gil, Seodaemun-gu, Seoul, Republic of Korea</p>
+
+                  <h3>Contact Us</h3>
+                  <p>Email : skgus2624@gmail.com</p>
+
+								</div>
+							</section>
+
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static "js/jquery.scrollex.min.js" %}"></script>
+			<script src="{% static "js/browser.min.js" %}"></script>
+			<script src="{% static "js/breakpoints.min.js" %}"></script>
+			<script src="{% static "js/util.js" %}"></script>
+			<script src="{% static "js/main.js" %}"></script>
+
+			<!--
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			-->
+
+	</body>
+</html>

@@ -1,0 +1,145 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<meta charset="utf-8">
+
+{% block content %}
+
+<meta charset="utf-8">
+<style>
+/*
+.bar {
+  fill: #40b4a1;
+}
+*/
+.bar:hover {
+  fill: #6771a5;
+}
+
+.axis--x path {
+  display: none;
+}
+
+</style>
+
+<br/>
+    <h3 style="color:#4acaa8 !important; float:left;"><a href = {% url 'line' %}> > >  Line Chart < < </a></h3>
+    <h3 style="color:#4acaa8 !important; float:left; margin-left:25px;"><a href = {% url 'bar' %}> > >  Bar Chart < < </a></h3>
+    <h3 style="color:#4acaa8 !important; float:left; margin-left:25px;"><a href = {% url 'pie' %}> > >  Pie Chart < < </a></h3>
+    <br/><br/><br/><br/>
+
+
+<svg width="750" height="500"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([10, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var legend_keys = ["Female", "Male"]
+
+var colors = [ ["Female", "#40b4a1"],
+               ["Male","#b47cb2"] ];
+
+d3.csv("../../static/data/gender_age_count_ratio.csv", function(d) {
+  d.ratio = +d.ratio;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.age_scope; }));
+  y.domain([0, d3.max(data, function(d) { return d.ratio; })]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10)) //y축 표시하는 단위
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("ratio");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return (d.gender == 'F' ? x(d.age_scope)+9 : x(d.age_scope)+70); })
+      .attr("y", function(d) { return y(d.ratio); })
+      .attr("width", function(d) { return x.bandwidth() - 80; })
+      .attr("height", function(d) { return height - y(d.ratio); })
+      .attr("fill", function(d) { return (d.gender == 'F' ? "#40b4a1" : "#b47cb2")});
+
+  g.selectAll(".text")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "label")
+      .attr("x", function(d) { return (d.gender == 'F' ? x(d.age_scope) + 22 : x(d.age_scope) + 81); })
+      .attr("y", function(d) { return y(d.ratio); })
+      .attr("font-size", "12px")
+      .attr("text-anchor", "start")
+      .text(function(d) { return d.ratio + "%"; });
+
+  g.selectAll(".text")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("dy", "1.30em")
+      .attr("class", "label")
+      .attr("x", function(d) { return (d.gender == 'F' ? x(d.age_scope) + 22 : x(d.age_scope) + 81); })
+      .attr("y", function(d) { return y(d.ratio); })
+      .attr("font-size", "12px")
+      .attr("text-anchor", "start")
+      .text(function(d) { return "      ("+d.count+")"; });
+
+  g.append("text")
+      .attr("x", (width / 2))
+        .attr("y", 10 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("text-decoration", "underline")
+        .text("Visitor Age-Gender Ratio Graph");
+
+  g.append("text")
+      .attr("x", 850)
+        .attr("y", 480)
+        .attr("text-anchor", "middle")
+        .style("font-size", "12px")
+        .style("text-decoration", "underline")
+        .text("ratio(count)");
+
+  g.append("text")
+      .attr("x", (width / 2) - 20)
+        .attr("y", 480)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("text-decoration", "underline")
+        .text("Female")
+      .style("fill", "#40b4a1");
+  g.append("text")
+      .attr("x", (width / 2) + 20)
+        .attr("y", 480)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("text-decoration", "underline")
+        .text("Male")
+      .style("fill", "#b47cb2");
+
+});
+
+</script>
+
+{% endblock %}

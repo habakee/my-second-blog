@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1>입력예시 : 2018-08-01</h1>
+    <form id="myform" method="post" action="#"> {% csrf_token %}
+        {{ form.as_p }}
+
+    </form>
+    <div id="loading" style="display:none">
+        <img id="loading-image" src="{% static "/images/ajax-loader.gif" %}"  alt="Loading..." />
+    </div>
+    <input type="submit" class="primary" value="Submit" id="mybutton" />
+<script>
+    $("#mybutton").click(function (e) {
+        e.preventDefault();
+
+        $("#mybutton").hide();
+        $("#loading").show();
+        $("#myform").submit();
+    })
+</script>
+
+{% endblock %}
+
+
+{##}
+{#<form id="form-destroy" method="post" action="delete.php">#}
+{#<input type="hidden" name="postid" value="3">#}
+{#</form>#}
+{##}
+{#<button id="btn-submit”>삭제하기</button>#}
+{##}
+{#<div id=“indicator” style="display:none">#}
+{# <img “ddd.gif” >#}
+{#</div>#}
+{##}
+{#<script>#}
+{#$("#btn-submit").click(function(e) {#}
+{#	e.preventDefault();#}
+{#	$(“#indecator”).show()#}
+{#        $(“#form-destory).hide()#}
+{#    $(#myform).submit()#}
+{#});#}
+{#</script>#}
